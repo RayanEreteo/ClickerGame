@@ -1,8 +1,19 @@
-
 .app{
   height: 100vh;
   background: #16161D;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+.spacebar-container{
+  margin-top: 30px;
+  border: 3px solid white;
+  width: 30rem;
+  text-align: center;
+}
+
+.highscore-container{
+  font-size: larger;
 }
