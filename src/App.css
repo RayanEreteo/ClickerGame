@@ -1,0 +1,8 @@
+
+.app{
+  height: 100vh;
+  background: #16161D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
