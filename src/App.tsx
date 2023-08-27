@@ -12,23 +12,19 @@ function App() {
   }
 
   useEffect(() => {
-    // Add an event listener for the keydown event
     const handleKeyDown = (event: any) => {
       console.log("dfdg")
       if (event.key === " ") {
-        // Spacebar was pressed
         addScore(multiplier);
       }
     };
 
-    // Attach the event listener to the window
     window.addEventListener("keydown", handleKeyDown);
 
-    // Cleanup: Remove the event listener when the component is unmounted
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []); // Empty dependency array ensures
+  }, []);
 
   return (
     <div className="app">
