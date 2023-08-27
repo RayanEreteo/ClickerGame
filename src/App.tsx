@@ -6,30 +6,42 @@ import SpaceBar from "./assets/spacebarlogo.svg";
 function App() {
   const [score, setScore] = useState<number>(0);
   const [multiplier, setMultiplier] = useState<number>(1);
+  const [spaceBarPressed, setSpaceBarPressed] = useState<boolean>(false)
 
   function addScore(multiplier: any) {
-    setScore((prev) => prev + 1 * multiplier)
+    if(spaceBarPressed == false){
+      setScore((prev) => prev + 1 * multiplier)
+      setSpaceBarPressed(true)
+    }
   }
 
-  useEffect(() => {
-    const handleKeyDown = (event: any) => {
-      console.log("dfdg")
-      if (event.key === " ") {
+  const handleKeyDown = (event: any) => {
+    console.log("dfdg")
+    if (event.key === " ") {
+      if(spaceBarPressed == false){
         addScore(multiplier);
       }
-    };
+    }
+  };
+
+  const handleKeyUp = (() => {
+    setSpaceBarPressed(false)
+  })
+
+  useEffect(() => {
 
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp)
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [spaceBarPressed]);
 
   return (
     <div className="app">
       <h1 className="main-title">SpaceBar Clicker</h1>
-      <div className="spacebar-container" onClick={() => addScore(multiplier)}>
+      <div className="spacebar-container" onClick={() => addScore(multiplier)} onMouseUp={handleKeyUp}>
         <img
           src={SpaceBar}
           alt="Spacebar"
