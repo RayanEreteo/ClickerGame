@@ -5,9 +5,11 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-family: Helvetica, sans-serif;
 }
 
 .spacebar-container{
+  user-select: none;
   margin-top: 30px;
   border: 3px solid white;
   width: 30rem;
@@ -15,5 +17,10 @@
 }
 
 .highscore-container{
-  font-size: larger;
+  text-align: center;
+  width: 30rem;
+  font-family: fantasy !important;
+  margin-top: 2rem;
+  font-size: 3rem;
+  letter-spacing: 10px;
 }
