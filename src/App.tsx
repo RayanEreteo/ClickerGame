@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className="main-title">SpaceBar Clicker</h1>
+      <h1 className="main-title">Spacebar Clicker</h1>
       <div className="spacebar-container" onClick={() => addScore(multiplier)} onMouseUp={handleKeyUp}>
         <img
           src={SpaceBar}
