@@ -16,7 +16,6 @@ function App() {
   }
 
   const handleKeyDown = (event: any) => {
-    console.log("dfdg")
     if (event.key === " ") {
       if(spaceBarPressed == false){
         addScore(multiplier);
@@ -39,7 +38,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className="main-title">Spacebar Clicker</h1>
+      <h1 className="main-title">Spacebar-Clicker</h1>
       <div className="spacebar-container" onClick={() => addScore(multiplier)} onMouseUp={handleKeyUp}>
         <img
           src={SpaceBar}

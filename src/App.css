@@ -8,6 +8,11 @@
   font-family: Helvetica, sans-serif;
 }
 
+.main-title{
+  letter-spacing: 10px;
+  text-transform: uppercase;
+}
+
 .spacebar-container{
   user-select: none;
   margin-top: 30px;
