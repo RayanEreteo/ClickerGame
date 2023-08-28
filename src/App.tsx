@@ -2,34 +2,36 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 import SpaceBar from "./assets/spacebarlogo.svg";
+import PowerUp from "./components/PowerUp";
+import { Multiplier } from "./modules/powerUpFunctionHandler";
 
 function App() {
   const [score, setScore] = useState<number>(0);
   const [multiplier, setMultiplier] = useState<number>(1);
-  const [spaceBarPressed, setSpaceBarPressed] = useState<boolean>(false)
+  const [spaceBarPressed, setSpaceBarPressed] = useState<boolean>(false);
 
   function addScore(multiplier: any) {
-    if(spaceBarPressed == false){
-      setScore((prev) => prev + 1 * multiplier)
-      setSpaceBarPressed(true)
+    if (spaceBarPressed == false) {
+      setScore((prev) => prev + 1 * multiplier);
+      setSpaceBarPressed(true);
     }
   }
 
   const handleKeyDown = (event: any) => {
     if (event.key === " ") {
-      if(spaceBarPressed == false){
+      if (spaceBarPressed == false) {
         addScore(multiplier);
       }
     }
   };
 
-  const handleKeyUp = (() => {
-    setSpaceBarPressed(false)
-  })
+  const handleKeyUp = () => {
+    setSpaceBarPressed(false);
+  };
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp)
+    window.addEventListener("keyup", handleKeyUp);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
@@ -39,7 +41,11 @@ function App() {
   return (
     <div className="app">
       <h1 className="main-title">Spacebar-Clicker</h1>
-      <div className="spacebar-container" onClick={() => addScore(multiplier)} onMouseUp={handleKeyUp}>
+      <div
+        className="spacebar-container"
+        onClick={() => addScore(multiplier)}
+        onMouseUp={handleKeyUp}
+      >
         <img
           src={SpaceBar}
           alt="Spacebar"
@@ -52,6 +58,14 @@ function App() {
       </div>
       <div className="highscore-container">
         <p id="Highscore">{score}</p>
+      </div>
+      <div className="powersUp-container">
+        <PowerUp
+          title="Multiplicateur"
+          desc="Multiplier le score que vous gagner a chaque pression de la barre espace."
+          cost={80}
+          func={() => Multiplier(setMultiplier)}
+        />
       </div>
     </div>
   );
