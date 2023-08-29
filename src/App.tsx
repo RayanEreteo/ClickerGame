@@ -8,25 +8,20 @@ import { Multiplier } from "./modules/powerUpFunctionHandler";
 function App() {
   const [score, setScore] = useState<number>(0);
   const [multiplier, setMultiplier] = useState<number>(1);
-  const [spaceBarPressed, setSpaceBarPressed] = useState<boolean>(false);
 
   function addScore(multiplier: any) {
-    if (spaceBarPressed == false) {
       setScore((prev) => prev + 1 * multiplier);
-      setSpaceBarPressed(true);
-    }
   }
 
   const handleKeyDown = (event: any) => {
     if (event.key === " ") {
-      if (spaceBarPressed == false) {
         addScore(multiplier);
-      }
     }
   };
+  
 
   const handleKeyUp = () => {
-    setSpaceBarPressed(false);
+    // 
   };
 
   useEffect(() => {
@@ -36,7 +31,7 @@ function App() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [spaceBarPressed]);
+  }, []);
 
   return (
     <div className="app">
