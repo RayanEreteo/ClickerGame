@@ -3,7 +3,6 @@ import "./App.css";
 
 import SpaceBar from "./assets/spacebarlogo.svg";
 import PowerUp from "./components/PowerUp";
-import { Multiplier } from "./modules/powerUpFunctionHandler";
 
 function App() {
   const [score, setScore] = useState<number>(0);
@@ -60,10 +59,11 @@ function App() {
         <PowerUp
           title="Multiplicateur"
           desc="Multiplier le score que vous gagner a chaque pression de la barre espace."
-          initialCost={80}
+          initialCost={40}
           playerScore={score}
           setPlayerScore={setScore}
-          action={() => Multiplier(setMultiplier)}
+          setMultiplier={setMultiplier}
+          actionName="Multiplier"
         />
       </div>
     </div>
