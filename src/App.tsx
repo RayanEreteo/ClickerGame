@@ -8,30 +8,33 @@ import { Multiplier } from "./modules/powerUpFunctionHandler";
 function App() {
   const [score, setScore] = useState<number>(0);
   const [multiplier, setMultiplier] = useState<number>(1);
+  const [spaceBarPressed, setSpaceBarPressed] = useState<boolean>(false)
 
   function addScore(multiplier: any) {
       setScore((prev) => prev + 1 * multiplier);
   }
 
   const handleKeyDown = (event: any) => {
-    if (event.key === " ") {
+    if (event.key === " " && !spaceBarPressed) {
+        setSpaceBarPressed(true)
         addScore(multiplier);
     }
   };
-  
 
-  const handleKeyUp = () => {
-    // 
-  };
+  const handleKeyUp = (event: any) => {
+    if (event.key === " ") {
+      setSpaceBarPressed(false)
+    }
+  }
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("keyup", handleKeyUp)
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [multiplier, spaceBarPressed]);
 
   return (
     <div className="app">
@@ -39,7 +42,6 @@ function App() {
       <div
         className="spacebar-container"
         onClick={() => addScore(multiplier)}
-        onMouseUp={handleKeyUp}
       >
         <img
           src={SpaceBar}
@@ -58,8 +60,10 @@ function App() {
         <PowerUp
           title="Multiplicateur"
           desc="Multiplier le score que vous gagner a chaque pression de la barre espace."
-          cost={80}
-          func={() => Multiplier(setMultiplier)}
+          initialCost={80}
+          playerScore={score}
+          setPlayerScore={setScore}
+          action={() => Multiplier(setMultiplier)}
         />
       </div>
     </div>

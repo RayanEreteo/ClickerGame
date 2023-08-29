@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useState } from 'react';
 
 interface PowerUpProps {
   title: string;
   desc: string;
-  cost: number;
-  func: () => void;
+  initialCost: number;
+  playerScore: number;
+  setPlayerScore: any;
+  action: () => void;
 }
 
-const PowerUp: React.FC<PowerUpProps> = ({ title, desc, cost, func }) => {
+const PowerUp: React.FC<PowerUpProps> = ({ title, desc, initialCost, playerScore, setPlayerScore,action }) => {
+  const buttonRef = useRef<any>(null)
+  const [cost, setCost] = useState<number>(initialCost)
 
-  const [canBuy, setCanBuy] = useState(false)
+  function buyHandler(){
+    buttonRef.current.blur()
+    if (playerScore >= cost) {
+      setPlayerScore((prev: number) => prev -= cost)
+      action()
+      setCost((prev: number) => prev += 50)
+    }
+  }
 
   return (
     <div className="powerUp">
       <h3 className="powerUp-title">{title}</h3>
       <p>{desc}</p>
-      <button onClick={func}>Activate</button>
+      <button onClick={buyHandler} ref={buttonRef}>Activate</button>
+      <p>Cout : {cost}</p>
     </div>
   );
 };
