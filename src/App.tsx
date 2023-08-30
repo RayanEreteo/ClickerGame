@@ -7,28 +7,28 @@ import PowerUp from "./components/PowerUp";
 function App() {
   const [score, setScore] = useState<number>(0);
   const [multiplier, setMultiplier] = useState<number>(1);
-  const [spaceBarPressed, setSpaceBarPressed] = useState<boolean>(false)
+  const [spaceBarPressed, setSpaceBarPressed] = useState<boolean>(false);
 
   function addScore(multiplier: any) {
-      setScore((prev) => prev + 1 * multiplier);
+    setScore((prev) => prev + 1 * multiplier);
   }
 
   const handleKeyDown = (event: any) => {
     if (event.key === " " && !spaceBarPressed) {
-        setSpaceBarPressed(true)
-        addScore(multiplier);
+      setSpaceBarPressed(true);
+      addScore(multiplier);
     }
   };
 
   const handleKeyUp = (event: any) => {
     if (event.key === " ") {
-      setSpaceBarPressed(false)
+      setSpaceBarPressed(false);
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp)
+    window.addEventListener("keyup", handleKeyUp);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
@@ -38,10 +38,7 @@ function App() {
   return (
     <div className="app">
       <h1 className="main-title">Spacebar-Clicker</h1>
-      <div
-        className="spacebar-container"
-        onClick={() => addScore(multiplier)}
-      >
+      <div className="spacebar-container" onClick={() => addScore(multiplier)}>
         <img
           src={SpaceBar}
           alt="Spacebar"
@@ -60,10 +57,29 @@ function App() {
           title="Multiplicateur"
           desc="Multiplier le score que vous gagner a chaque pression de la barre espace."
           initialCost={40}
+          inflation={70}
           playerScore={score}
           setPlayerScore={setScore}
           setMultiplier={setMultiplier}
           actionName="Multiplier"
+        />
+        <PowerUp
+          title="Auto-Click"
+          desc="Votre score augmente automatiquement. Chaque achat diminue le delay de l'auto-click."
+          initialCost={120}
+          inflation={100}
+          playerScore={score}
+          setPlayerScore={setScore}
+          actionName="Auto-Click"
+        />
+        <PowerUp
+          title="Placeholder"
+          desc="Votre score augmente automatiquement. Chaque achat diminue le delay de l'auto-click."
+          initialCost={120}
+          inflation={100}
+          playerScore={score}
+          setPlayerScore={setScore}
+          actionName="default"
         />
       </div>
     </div>

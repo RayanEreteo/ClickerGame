@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useState } from 'react';
 
 // Importation des function de power-up
@@ -8,13 +8,15 @@ interface PowerUpProps {
   title: string;
   desc: string;
   initialCost: number;
+  inflation: number;
   playerScore: number;
-  setMultiplier: any;
+  setMultiplier?: any;
   setPlayerScore: any;
   actionName: string;
+
 }
 
-const PowerUp: React.FC<PowerUpProps> = ({ title, desc, initialCost, playerScore, setPlayerScore, setMultiplier,actionName}) => {
+const PowerUp: React.FC<PowerUpProps> = ({ title, desc, initialCost, inflation, playerScore, setPlayerScore, setMultiplier,actionName}) => {
   const buttonRef = useRef<any>(null)
   const [cost, setCost] = useState<number>(initialCost)
 
@@ -22,7 +24,6 @@ const PowerUp: React.FC<PowerUpProps> = ({ title, desc, initialCost, playerScore
     switch (actionName) {
       case "Multiplier":
         return Multiplier(setMultiplier)
-        break;
       case "Auto-Click":
         return autoClick
       default:
@@ -36,7 +37,7 @@ const PowerUp: React.FC<PowerUpProps> = ({ title, desc, initialCost, playerScore
     if (playerScore >= cost) {
       setPlayerScore((prev: number) => prev -= cost)
       actionSelect()
-      setCost((prev: number) => prev += 50)
+      setCost((prev: number) => prev += inflation)
     }
   }
 

@@ -29,3 +29,18 @@
   font-size: 3rem;
   letter-spacing: 10px;
 }
+
+.powersUp-container{
+  margin-top: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.powerUp{
+  width: 560.77px;
+  height: 131px;
+  margin-left: 30px;
+  border: 3px solid white;
+  padding: 15px;
+}
