@@ -3,7 +3,7 @@ import "./App.css";
 
 import SpaceBar from "./assets/spacebarlogo.svg";
 import PowerUp from "./components/PowerUp";
-
+import ErrorMessage from "./components/ErrorMessage";
 function App() {
   const [score, setScore] = useState<number>(0);
   const [multiplier, setMultiplier] = useState<number>(1);
@@ -25,6 +25,10 @@ function App() {
       setSpaceBarPressed(false);
     }
   };
+
+  const showError = () => {
+    console.log("OOps")
+  }
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -55,33 +59,37 @@ function App() {
       <div className="powersUp-container">
         <PowerUp
           title="Multiplicateur"
-          desc="Multiplier le score que vous gagner a chaque pression de la barre espace."
+          desc="Multiplier le score que vous gagner à chaque pression de la barre espace."
           initialCost={40}
           inflation={70}
           playerScore={score}
           setPlayerScore={setScore}
           setMultiplier={setMultiplier}
           actionName="Multiplier"
+          errorResponseFunc={showError}
         />
         <PowerUp
           title="Auto-Click"
-          desc="Votre score augmente automatiquement. Chaque achat diminue le delay de l'auto-click."
+          desc="Votre score augmente automatiquement. Chaque achat diminue le délai de l'auto-click."
           initialCost={120}
           inflation={100}
           playerScore={score}
           setPlayerScore={setScore}
           actionName="Auto-Click"
+          errorResponseFunc={showError}
         />
         <PowerUp
           title="Taux Critique"
-          desc="Augmente les chances d'obtenir un clic critique. les clic critique peuvent etre obtenue uniquement en clic manuelle"
+          desc="Augmente les chances d'obtenir un clic critique. Les clics critiques peuvent être obtenue uniquement en clic manuel."
           initialCost={30}
           inflation={55}
           playerScore={score}
           setPlayerScore={setScore}
           actionName="default"
+          errorResponseFunc={showError}
         />
       </div>
+      <ErrorMessage message="Vous n'avez pas assez de points !"/>
     </div>
   );
 }
