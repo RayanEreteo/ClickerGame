@@ -73,10 +73,10 @@ function App() {
           actionName="Auto-Click"
         />
         <PowerUp
-          title="Placeholder"
-          desc="Votre score augmente automatiquement. Chaque achat diminue le delay de l'auto-click."
-          initialCost={120}
-          inflation={100}
+          title="Taux Critique"
+          desc="Augmente les chances d'obtenir un clic critique. les clic critique peuvent etre obtenue uniquement en clic manuelle"
+          initialCost={30}
+          inflation={55}
           playerScore={score}
           setPlayerScore={setScore}
           actionName="default"
