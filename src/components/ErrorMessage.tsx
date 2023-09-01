@@ -6,7 +6,7 @@ interface props {
 
 const ErrorMessage: React.FC<props> = ( {message} ) => {
     return (
-        <div className='error-message-container'>
+        <div id='error-message-container'>
             <p id='error-message'>{message}</p>
         </div>
     )

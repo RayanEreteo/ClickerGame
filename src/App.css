@@ -51,13 +51,14 @@
   background: black;
 }
 
-.error-message-container{
+#error-message-container{
   margin-top: 6rem;
   padding: 13px;
   border-radius: 13px;
   background: rgba(248, 1, 1, 0.5);
+  visibility: hidden;
 }
 
 .error-message-container-hidden{
-  
+  display: none;
 }

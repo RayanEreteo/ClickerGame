@@ -8,6 +8,7 @@ function App() {
   const [score, setScore] = useState<number>(0);
   const [multiplier, setMultiplier] = useState<number>(1);
   const [spaceBarPressed, setSpaceBarPressed] = useState<boolean>(false);
+  const [errorShown, setErrorShown] = useState<boolean>(false)
 
   function addScore(multiplier: any) {
     setScore((prev) => prev + 1 * multiplier);
@@ -26,8 +27,19 @@ function App() {
     }
   };
 
-  const showError = () => {
-    console.log("OOps")
+
+  function showError() {
+    const errorMessage = document.getElementById("error-message-container")!;
+
+    if (!errorShown) {
+      setErrorShown(true)
+      errorMessage.style.visibility = "visible";
+
+      setTimeout(() => {
+        errorMessage.style.visibility = "hidden";
+        setErrorShown(false)
+      }, 2000);
+    }
   }
 
   useEffect(() => {
@@ -66,7 +78,7 @@ function App() {
           setPlayerScore={setScore}
           setMultiplier={setMultiplier}
           actionName="Multiplier"
-          errorResponseFunc={showError}
+          errorMessageFunc={showError}
         />
         <PowerUp
           title="Auto-Click"
@@ -76,7 +88,7 @@ function App() {
           playerScore={score}
           setPlayerScore={setScore}
           actionName="Auto-Click"
-          errorResponseFunc={showError}
+          errorMessageFunc={showError}
         />
         <PowerUp
           title="Taux Critique"
@@ -86,7 +98,7 @@ function App() {
           playerScore={score}
           setPlayerScore={setScore}
           actionName="default"
-          errorResponseFunc={showError}
+          errorMessageFunc={showError}
         />
       </div>
       <ErrorMessage message="Vous n'avez pas assez de points !"/>

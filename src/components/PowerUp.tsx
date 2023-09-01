@@ -12,7 +12,7 @@ interface PowerUpProps {
   setMultiplier?: any;
   setPlayerScore: any;
   actionName: string;
-  errorResponseFunc: any;
+  errorMessageFunc: any;
 }
 
 const PowerUp: React.FC<PowerUpProps> = ({
@@ -24,8 +24,8 @@ const PowerUp: React.FC<PowerUpProps> = ({
   setPlayerScore,
   setMultiplier,
   actionName,
-  errorResponseFunc,
-  }) => {
+  errorMessageFunc
+}) => {
   const [cost, setCost] = useState<number>(initialCost);
   const [bought, setBought] = useState<number>(0);
 
@@ -47,7 +47,7 @@ const PowerUp: React.FC<PowerUpProps> = ({
       setCost((prev: number) => (prev += inflation));
       setBought((prev: number) => (prev += 1));
     } else {
-      errorResponseFunc();
+      errorMessageFunc()
     }
   }
 
