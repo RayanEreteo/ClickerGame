@@ -34,7 +34,7 @@ const PowerUp: React.FC<PowerUpProps> = ({
       case "Multiplier":
         return Multiplier(setMultiplier);
       case "Auto-Click":
-        return autoClick();
+        return autoClick(setPlayerScore);
       default:
         break;
     }
