@@ -6,7 +6,7 @@ function Multiplier(setMultiplier: any) {
   setMultiplier((prev: number) => prev + 1);
 }
 
-function autoClick(setScore: any) {
+function autoClick(setScore: any, multiplier: any) {
   if (active) {
     autoClickDelay -= 50;
     // Clear the previous interval if it exists
@@ -15,15 +15,19 @@ function autoClick(setScore: any) {
     }
     // Set up a new interval with the updated delay
     autoClickInterval = setInterval(() => {
-      setScore((prev: any) => (prev += 1));
+      setScore((prev: any) => (prev += 1 * multiplier));
     }, autoClickDelay);
   } else {
     active = true;
     // Set up the initial interval
     autoClickInterval = setInterval(() => {
-      setScore((prev: any) => (prev += 1));
+      setScore((prev: any) => (prev += 1 * multiplier));
     }, autoClickDelay);
   }
 }
 
-export { Multiplier, autoClick };
+function criticalHit(){
+
+}
+
+export { Multiplier, autoClick, criticalHit };

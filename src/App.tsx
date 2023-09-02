@@ -76,6 +76,7 @@ function App() {
           inflation={70}
           playerScore={score}
           setPlayerScore={setScore}
+          multiplier={multiplier}
           setMultiplier={setMultiplier}
           actionName="Multiplier"
           errorMessageFunc={showError}
@@ -87,6 +88,7 @@ function App() {
           inflation={100}
           playerScore={score}
           setPlayerScore={setScore}
+          multiplier={multiplier}
           actionName="Auto-Click"
           errorMessageFunc={showError}
         />
@@ -97,6 +99,7 @@ function App() {
           inflation={55}
           playerScore={score}
           setPlayerScore={setScore}
+          multiplier={multiplier}
           actionName="default"
           errorMessageFunc={showError}
         />

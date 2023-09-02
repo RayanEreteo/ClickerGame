@@ -9,6 +9,7 @@ interface PowerUpProps {
   initialCost: number;
   inflation: number;
   playerScore: number;
+  multiplier: any;
   setMultiplier?: any;
   setPlayerScore: any;
   actionName: string;
@@ -22,6 +23,7 @@ const PowerUp: React.FC<PowerUpProps> = ({
   inflation,
   playerScore,
   setPlayerScore,
+  multiplier,
   setMultiplier,
   actionName,
   errorMessageFunc
@@ -34,7 +36,7 @@ const PowerUp: React.FC<PowerUpProps> = ({
       case "Multiplier":
         return Multiplier(setMultiplier);
       case "Auto-Click":
-        return autoClick(setPlayerScore);
+        return autoClick(setPlayerScore, multiplier);
       default:
         break;
     }
