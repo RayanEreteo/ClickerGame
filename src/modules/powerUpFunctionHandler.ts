@@ -4,9 +4,6 @@ let autoClickInterval: NodeJS.Timeout | null = null; // Define an interval varia
 let autoClickActive: boolean = false;
 let autoClickMultiplier: number = 1;
 
-//Variables taux critique
-let criticalRate: number = 0;
-
 function Multiplier(setMultiplier: any) {
   autoClickMultiplier += 1;
   setMultiplier((prev: number) => prev + 1);
@@ -32,10 +29,9 @@ function autoClick(setScore: any) {
   }
 }
 
-function criticalHit(setScore: any) {
-  if (criticalRate == 0) {
-    setScore((prev: any) => (prev += 500));
-  }
+function criticalHit(setCriticalHitRate: any) {
+  console.info("Critical !")
+  setCriticalHitRate((prev: number) => ++prev)
 }
 
 export { Multiplier, autoClick, criticalHit };

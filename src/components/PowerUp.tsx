@@ -10,6 +10,7 @@ interface PowerUpProps {
   inflation: number;
   playerScore: number;
   setMultiplier?: any;
+  setCriticalHitRate: any;
   setPlayerScore: any;
   actionName: string;
   errorMessageFunc: any;
@@ -23,6 +24,7 @@ const PowerUp: React.FC<PowerUpProps> = ({
   playerScore,
   setPlayerScore,
   setMultiplier,
+  setCriticalHitRate,
   actionName,
   errorMessageFunc
 }) => {
@@ -36,7 +38,7 @@ const PowerUp: React.FC<PowerUpProps> = ({
       case "Auto-Click":
         return autoClick(setPlayerScore);
       case "CriticalHit":
-        return criticalHit(setPlayerScore)
+        return criticalHit(setCriticalHitRate)
       default:
         break;
     }

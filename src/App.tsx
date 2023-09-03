@@ -7,11 +7,19 @@ import ErrorMessage from "./components/ErrorMessage";
 function App() {
   const [score, setScore] = useState<number>(0);
   const [multiplier, setMultiplier] = useState<number>(1);
+  const [criticalHitRate, setCriticalHitRate] = useState<number>(0)
   const [spaceBarPressed, setSpaceBarPressed] = useState<boolean>(false);
   const [errorShown, setErrorShown] = useState<boolean>(false)
 
+  useEffect(() => {
+    console.log(criticalHitRate)
+  }, [criticalHitRate])
+
   function addScore(multiplier: any) {
     setScore((prev) => prev + 1 * multiplier);
+    if (criticalHitRate == 1) {
+      setScore((prev) => prev += 600)
+    }
   }
 
   const handleKeyDown = (event: any) => {
@@ -77,6 +85,7 @@ function App() {
           playerScore={score}
           setPlayerScore={setScore}
           setMultiplier={setMultiplier}
+          setCriticalHitRate={setCriticalHitRate}
           actionName="Multiplier"
           errorMessageFunc={showError}
         />
@@ -87,6 +96,7 @@ function App() {
           inflation={100}
           playerScore={score}
           setPlayerScore={setScore}
+          setCriticalHitRate={setCriticalHitRate}
           actionName="Auto-Click"
           errorMessageFunc={showError}
         />
@@ -97,6 +107,7 @@ function App() {
           inflation={55}
           playerScore={score}
           setPlayerScore={setScore}
+          setCriticalHitRate={setCriticalHitRate}
           actionName="CriticalHit"
           errorMessageFunc={showError}
         />
