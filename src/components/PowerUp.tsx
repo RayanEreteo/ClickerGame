@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Importation des function de power-up
-import { Multiplier, autoClick } from "../modules/powerUpFunctionHandler";
+import { Multiplier, autoClick, criticalHit } from "../modules/powerUpFunctionHandler";
 
 interface PowerUpProps {
   title: string;
@@ -9,7 +9,6 @@ interface PowerUpProps {
   initialCost: number;
   inflation: number;
   playerScore: number;
-  multiplier: any;
   setMultiplier?: any;
   setPlayerScore: any;
   actionName: string;
@@ -23,7 +22,6 @@ const PowerUp: React.FC<PowerUpProps> = ({
   inflation,
   playerScore,
   setPlayerScore,
-  multiplier,
   setMultiplier,
   actionName,
   errorMessageFunc
@@ -36,7 +34,9 @@ const PowerUp: React.FC<PowerUpProps> = ({
       case "Multiplier":
         return Multiplier(setMultiplier);
       case "Auto-Click":
-        return autoClick(setPlayerScore, multiplier);
+        return autoClick(setPlayerScore);
+      case "CriticalHit":
+        return criticalHit(setPlayerScore)
       default:
         break;
     }
