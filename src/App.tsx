@@ -4,48 +4,47 @@ import "./App.css";
 import SpaceBar from "./assets/spacebarlogo.svg";
 import PowerUp from "./components/PowerUp";
 import ErrorMessage from "./components/ErrorMessage";
+
 function App() {
   const [score, setScore] = useState<number>(0);
   const [multiplier, setMultiplier] = useState<number>(1);
-  const [criticalHitRate, setCriticalHitRate] = useState<number>(0)
+  const [criticalHitRate, setCriticalHitRate] = useState<number>(0);
   const [spaceBarPressed, setSpaceBarPressed] = useState<boolean>(false);
-  const [errorShown, setErrorShown] = useState<boolean>(false)
-
-  useEffect(() => {
-    console.log(criticalHitRate)
-  }, [criticalHitRate])
+  const [errorShown, setErrorShown] = useState<boolean>(false);
+  const [playAnimation, setPlayAnimation] = useState<boolean>(false)
 
   function addScore(multiplier: any) {
     setScore((prev) => prev + 1 * multiplier);
-    if (criticalHitRate == 1) {
-      setScore((prev) => prev += 600)
+    if (Math.floor(Math.random() * 100) < criticalHitRate) {
+      setScore((prev) => (prev += 600));
     }
   }
 
   const handleKeyDown = (event: any) => {
+    setPlayAnimation(true)
     if (event.key === " " && !spaceBarPressed) {
       setSpaceBarPressed(true);
       addScore(multiplier);
     }
-  };
+  }
 
   const handleKeyUp = (event: any) => {
+    setPlayAnimation(false)
     if (event.key === " ") {
       setSpaceBarPressed(false);
     }
-  };
-
+  }
 
   function showError() {
     const errorMessage = document.getElementById("error-message-container")!;
 
     if (!errorShown) {
-      setErrorShown(true)
+      setErrorShown(true);
       errorMessage.style.visibility = "visible";
 
       setTimeout(() => {
         errorMessage.style.visibility = "hidden";
-        setErrorShown(false)
+        setErrorShown(false);
       }, 2000);
     }
   }
@@ -62,7 +61,7 @@ function App() {
   return (
     <div className="app">
       <h1 className="main-title">Spacebar-Clicker</h1>
-      <div className="spacebar-container" onClick={() => addScore(multiplier)}>
+      <div className={playAnimation ? "spacebar-container-reversed" : "spacebar-container"} onClick={() => addScore(multiplier)}>
         <img
           src={SpaceBar}
           alt="Spacebar"
@@ -112,7 +111,7 @@ function App() {
           errorMessageFunc={showError}
         />
       </div>
-      <ErrorMessage message="Vous n'avez pas assez de points !"/>
+      <ErrorMessage message="Vous n'avez pas assez de points !" />
     </div>
   );
 }

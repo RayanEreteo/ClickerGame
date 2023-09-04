@@ -30,7 +30,6 @@ function autoClick(setScore: any) {
 }
 
 function criticalHit(setCriticalHitRate: any) {
-  console.info("Critical !")
   setCriticalHitRate((prev: number) => ++prev)
 }
 
