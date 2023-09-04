@@ -30,7 +30,7 @@ function autoClick(setScore: any) {
 }
 
 function criticalHit(setCriticalHitRate: any) {
-  setCriticalHitRate((prev: number) => ++prev)
+  setCriticalHitRate((prev: number) => prev += 1)
 }
 
 export { Multiplier, autoClick, criticalHit };

@@ -15,6 +15,7 @@ function App() {
 
   function addScore(multiplier: any) {
     setScore((prev) => prev + 1 * multiplier);
+    console.log(criticalHitRate)
     if (Math.floor(Math.random() * 100) < criticalHitRate) {
       setScore((prev) => (prev += 600));
     }
